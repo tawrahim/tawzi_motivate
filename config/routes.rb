@@ -1,5 +1,8 @@
 TawziMotivate::Application.routes.draw do
   
+  # This takes HTTP post and get request
+  resources :users
+
   get "users/new"
 
   # We want to match our routes with matchers
