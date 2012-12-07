@@ -16,10 +16,7 @@ describe "UserPages" do
 		it { should have_selector('h1', text: user.name) }
 		it { should have_selector('title', text: user.name) }
 		it { should_not have_content('Password digest')}
-	end 	
-end
-
-
+	end
 
 	describe "signup" do
 
@@ -33,9 +30,8 @@ end
 
 			describe "after submission" do
 				before { click_button submit }
-				#it { should have_selector('title', text: 'Sign up')}
-				#it { should have_content('error')}
-				it { should_not have_content('Password digest')}
+				it { should have_selector('title', text: 'Sign up')}
+				it { should have_content('error')}
 			end
 
 		end
@@ -55,10 +51,14 @@ end
 
 			describe "after saving a user" do
 				before { click_button submit }
+
 				let(:user) { User.find_by_email("user@example.com") }
-				#it { should have_selector('title', text: user.name)}
-				#it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+
+				it { should have_selector('title', text: user.name) }
+				it { should have_selector('div.alert.alert-success', text: 'Welcome')}
+				#it { should have_link('Sign out')}
 				
 			end		
 		end
 	end
+end
