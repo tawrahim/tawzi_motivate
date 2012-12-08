@@ -18,15 +18,10 @@ class SessionsController < ApplicationController
 		end
 	end
 
+	# Sign out and destroy session, the sign_out method is defined in the helper
 	def destroy
-		
+		sign_out
+		redirect_to root_path
 	end
 
 end
-
-
-	# # Sign out and destroy session, the sign_out method is defined in the helper
-	# def destroy
-	# 	sign_out
-	# 	redirect_to root_path
-	# end

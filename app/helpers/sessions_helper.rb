@@ -6,7 +6,7 @@ module SessionsHelper
 	# To do this we are going to use a permananent cookie which expires in 20years
 	def sign_in(user)
 		cookies.permanent[:remember_token] = user.remember_token
-		current_user = user
+		self.current_user = user
 	end
 
 	# The signed_in method would be true if the current user is not nil
@@ -27,6 +27,12 @@ module SessionsHelper
 	# to be nil but we would have already stored it in a variable
 	def current_user
 		@current_user ||= User.find_by_remember_token(cookies[:remember_token])
+	end	
+
+	# Signout method
+	def sign_out
+		self.current_user = nil
+		cookies.delete(:remember_token)
 	end	
 
 end
