@@ -1,0 +1,24 @@
+<!-- This page contains the stuffs for the signin page -->
+<% provide(:title, 'Sign in') %>
+<h1>Sign in</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+
+		<!-- We have to provide it with url since sessions is not an active record object, in this case the params :sesion is tied to the username and password, we also have to have explicitly tell it that it is posting to the sessions path -->
+		<%= form_for(:session, url: sessions_path) do |f| %>
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+
+			<%= f.submit "Sign in", class:"btn-large btn-primary"%>
+
+		<% end %>
+
+		<p>New User? <%= link_to "Sign up now!", signup_path %></p>
+	</div>
+</div>
+
+<h1>Hello <%= params[:session]%></h1>

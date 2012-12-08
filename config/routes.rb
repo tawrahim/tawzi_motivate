@@ -2,12 +2,21 @@ TawziMotivate::Application.routes.draw do
   
   # This takes HTTP post and get request
   resources :users
-
-  get "users/new"
+    # This resource takes care of all our sessions actions
+  # Below is how the HTTP request would be map for the sessions resources
+  # GET => /signin 'signin_path' [Page for new session]
+  # POST => /sessions 'sessions_path' [create new session]
+  # DELETE => /signout 'signout_path' [Destroys the session]
+  resources :sessions, only: [:new, :create, :destroy]
+  
 
   # We want to match our routes with matchers
-  root :to => 'static_pages#home'
+  root to: 'static_pages#home'
+
+  
   match '/signup', to: 'users#new'
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy'
 
   match '/help', to: 'static_pages#help'
   match '/about', to: 'static_pages#about'
