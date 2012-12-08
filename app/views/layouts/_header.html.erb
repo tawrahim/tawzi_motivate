@@ -6,7 +6,12 @@
 				<ul class="nav pull-right">
 					<li><%= link_to "Home", root_path%></li>
 					<li><%= link_to "Help", help_path%></li>
-					<li><%= link_to "Sign in", signin_path%></li>
+					<!-- If the user is signed in only show them some links -->
+					<% if signed_in? %>
+
+					<% else %>
+						<li><%= link_to "Sign in", signin_path%></li>
+					<% end %>
 				</ul> 
 			</nav>
 		</div>

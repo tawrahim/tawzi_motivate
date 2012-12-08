@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   # Before save callback method, this code would be executed
   # before the active record object gets saved
   before_save  { |user| user.email = user.email.downcase }
+  before_save :create_remember_token
 
   # Makes sure that the user supplies email and name
   validates :name, presence: true, length: {maximum: 50}
@@ -18,4 +19,11 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true					
 
+  private
+    # This is a method to set the user's remember token using rail's base64
+    # The token gives us a unique string for each user
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
+    
 end
