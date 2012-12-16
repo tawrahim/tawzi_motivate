@@ -1,0 +1,12 @@
+<!-- This page is the template for displaying all users -->
+<% provide(:title, 'All Users') %>
+<h1>All Users</h1>
+
+<!-- Pagination for above and bellow the page using the will_Paginate gem -->
+<%= will_paginate%>
+
+<ul class="users">
+  <%= render @users %>
+</ul>
+
+<%= will_paginate %>
