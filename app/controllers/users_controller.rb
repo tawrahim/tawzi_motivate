@@ -10,6 +10,9 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
   
+  # @param [Request] request the request object
+  # @return [String] the resulting webpage
+  # @author tawheed raheem
   def new
   	@user = User.new
   end
@@ -18,6 +21,9 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   end
 
+  # creates new user
+  # @note and a note
+  # (see #get)
   def create
   	@user = User.new(params[:user])
   	if @user.save
